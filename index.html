@@ -1,193 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Empathic AI Framework</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
+  <meta charset="UTF-8">
+  <title>Spanish SER Research</title>
+  <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-content {
+        padding: 40px 5%;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #0073e6;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+      color: #666;
+      margin-bottom: 20px;
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .section {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .section p {
+      font-size: 1em;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .image-text-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 10px;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .image-text-row img {
+      width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      object-fit: cover;
+    }
+
+    .abstract-column {
+      flex: 1;
+      max-width: 48%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .side-by-side-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    /* Estilos para PNG sin sombra */
+    .side-by-side-gallery img,
+    .image-text-row img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 0;
+    box-shadow: none; /* sin sombra */
+    object-fit: contain;
+    image-rendering: auto;
+    }
+
+    /* Layout móvil: una sola columna */
+    @media screen and (max-width: 768px) {
+    .side-by-side-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-by-side-gallery img {
+        max-width: 90vw;
+    }
+    }
+
+    .flow-sequence {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    }
+
+    .flow-sequence figure {
+    margin: 0;
+    text-align: center;
+    }
+
+    .flow-arrow {
+    font-size: 3em;
+    color: #888;
+    margin: 0 0px;
+    }
+
+    @media screen and (max-width: 768px) {
+    .flow-sequence {
+        flex-direction: column;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg); /* Flecha hacia abajo en móvil */
+        margin: 10px 0;
+    }
+    }
+
+
+    .paper-link, .gradio-link, .code-link {
+      display: inline-block;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .paper-link {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      color: #0056b3;
+    }
+
+    .paper-link:hover {
+      background-color: #e0e0e0;
+    }
+
+    .gradio-link {
+      background-color: #0056b3;
+      color: white;
+      font-size: 1.1em;
+      border: none;
+      margin: 20px auto;
+    }
+
+    .gradio-link:hover {
+      background-color: #003d80;
+    }
+
+    .code-link {
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      color: #333;
+      margin: 20px auto;
+    }
+
+    .code-link:hover {
+      background-color: #e6e6e6;
+    }
+
+    figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    }
+
+    figcaption {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #666;
+    margin-top: 6px;
+    text-align: center;
+    max-width: 90%;
+    }
+
+    .image-text-row figure,
+    .side-by-side-gallery figure {
+    flex: 1;
+    }
+
+    .soft-divider {
+    width: 60%;
+    max-width: 800px;
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 0px auto 30px auto;
+    }
+
+    .back-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    margin: 5px auto;
+    transition: background-color 0.2s ease;
+    }
+
+    .back-button:hover {
+    background-color: #e6e6e6;
+    }
+
+    footer {
+        background-color: #ffffff;
+        border-top: 1px solid #ddd;
+        color: #555;
+        font-size: 0.95em;
+        padding: 30px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-left,
+    .footer-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .footer-left img,
+    .footer-right img {
+        height: auto;
+        max-height: 80px;
+        width: auto;
+    }
+
+    .footer-center {
+        text-align: center;
+        margin: 0 auto;
+        min-width: 200px;
         }
 
-        body {
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            justify-content: space-between;
-        }
 
-        h1 {
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 0px;
-            text-align: center;
-            color: #222;
-        }
+    .button-row {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0px 0;
+    }
 
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 40px;
-            text-align: center;
-            align-items: center;
-            }
+    .gradio-link,
+    .code-link {
+        margin: 0; /* elimina márgenes verticales individuales */
+    }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-        }
+    .contact-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    vertical-align: middle;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    }
 
-        .card {
-            background-color: #f9f9f9;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 260px;
-            height: 280px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-        }
+    .contact-icon:hover {
+    opacity: 1;
+    }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-        }
-
-        .card a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1.1em;
-            font-weight: 500;
-            padding: 20px;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .related-section {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .related-section h2 {
-            font-size: 1.5em;
-            color: #222;
-            margin-bottom: 30px;
-        }
-
-        .related-section a {
-            font-size: 1em;
-            color: #0056b3;
-            text-decoration: none;
-            border: 1px solid #ddd;
-            padding: 10px 16px;
-            border-radius: 8px;
-            background-color: #f5f5f5;
-            transition: background-color 0.3s ease;
-        }
-
-        .related-section a:hover {
-            background-color: #e9ecef;
-        }
-
-        footer {
-            background-color: #ffffff;
-            border-top: 1px solid #ddd;
-            color: #555;
-            font-size: 0.95em;
-            padding: 30px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .footer-left,
-        .footer-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-left img,
-        .footer-right img {
-            height: auto;
-            max-height: 80px;
-            width: auto;
-        }
-
-        .footer-center {
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .footer-center p {
-            margin: 4px 0;
-        }
-    </style>
+  </style>
 </head>
 <body>
+    <div class="page-content">
+        <h1>Spanish End-to-End Empathic HCI</h1>
+        <hr class="soft-divider">        
 
-    <h1>Spanish SER and Empathic HCI Research</h1>
-    <p class="subtitle">Explore our recent advancements in SER using PTMs with Multitask Learning, and our end-to-end HCI system.</p>
+        <div class="section">
+            <div class="image-text-row">
+                <figure>
+                    <img src="assets\diagram.png" alt="Summary of best results and SOTA comparison", style="height: 200px;">
+                    <figcaption>The architecture follows an ASR → SER → Retrieval → Reasoning LLM → TTS pipeline.</figcaption>
+                </figure>
+                <div class="abstract-column">
+                    <p>This study presents the first fully integrated empathic HCI pipeline in Spanish, combining ASR, multitask SER, protocol-driven reasoning via LLMs, and emotionally expressive TTS. Unlike previous systems constrained to isolated modules or non-Spanish languages, this framework enables proactive, affect-aware interaction across the full conversational cycle. Its modular and scalable design allows easy extension to other domains or tasks, facilitating continued development of emotionally intelligent systems. </p>
+                    <a class="paper-link" href="https://www.mdpi.com/2076-3417/15/8/4340" target="_blank">Read the full paper on MDPI</a>
+                </div>
+            </div>
+            <div class="section">
+            <h2>System in Action</h2>
+            <div class="side-by-side-gallery">
+                <figure>
+                <img src="assets/1_voice.png" alt="Audio Input", style="height: 60px;">
+                <figcaption>Voice input</figcaption>
+                </figure>
+                <div class="flow-arrow">→</div>
+                <figure>
+                <img src="assets/2_whisper.png" alt="ASR output", style="height: 60px;">
+                <figcaption>Whisper transcription (ASR)</figcaption>
+                </figure>
+                <div class="flow-arrow">→</div>
+                <figure>
+                <img src="assets/3_ser.png" alt="Emotion detection", style="height: 60px;">
+                <figcaption>Emotion recognition (Multitask SER)</figcaption>
+                </figure>
+                <div class="flow-arrow">→</div>
+                <figure>
+                <img src="assets/4_retrieval.png" alt="TTS Audio", style="height: 60px;">
+                <figcaption>Retrieval</figcaption>
+                </figure>
+                <div class="flow-arrow">→</div>
+                <figure>
+                <img src="assets/5_llm.png" alt="LLM response", style="height: 60px;">
+                <figcaption>Assistant's response (LLM)</figcaption>
+                </figure>
+                <div class="flow-arrow">→</div>
+                <figure>
+                <img src="assets/6_tts.png" alt="TTS Audio", style="height: 60px;">
+                <figcaption>Emotional speech output (TTS)</figcaption>
+                </figure>
+                
+            </div>
+            </div>
+        </div>
 
-    <div class="container">
-        <div class="card">
-            <img src="assets/ser.png" alt="SER">
-            <a href="https://alxmares.github.io/Spanish_Speech_Emotion_Recognition/">Speech Emotion Recognition</a>
+        <div class="button-row">
+            <a class="gradio-link" href="https://your-gradio-link-demo.com" target="_blank">▶ Try the HCI Demo on Gradio</a>
+            <a class="code-link" href="https://github.com/alxmares/Spanish_Emphatic_HCI" target="_blank">View the Code on GitHub</a>
         </div>
-        <div class="card">
-            <img src="assets/tts.jpg" alt="TTS">
-            <a href="https://alxmares.github.io/Spanish_Emotional_TTS/">Text-to-Speech Synthesis</a>
-        </div>
-        <div class="card">
-            <img src="assets/hci.png" alt="HCI">
-            <a href="https://alxmares.github.io/Spanish_Speech_Emotion_Recognition/">Empathic HCI System</a>
-        </div>
+
+
+        <a href="index.html" class="back-button">← Back to Main</a>
     </div>
-
-    <div class="related-section">
-        <h2>Related Research Paper</h2>
-        <a href="https://www.mdpi.com/2076-3417/15/8/4340" target="_blank">
-            Advancing Spanish Speech Emotion Recognition: A Comprehensive Benchmark of Pre-Trained Models
-        </a>
-    </div>
-
+    
+    
     <footer>
         <div class="footer-left">
-            <img src="assets/uv.jpg" alt="UV Logo" style="height: 80px;">
-            <img src="assets/inaoe.png" alt="INAOE Logo"  style="height: 80px;">
-            <img src="assets/fie.png" alt="FIE Logo" style="height: 80px;">
+            <img src="assets\uv.jpg" alt="UV Logo" style="height: 80px;">
+            <img src="assets\inaoe.png" alt="INAOE Logo"  style="height: 80px;">
+            <img src="assets\fie.png" alt="FIE Logo" style="height: 80px;">
         </div>
 
         <div class="footer-center">
-            <p><strong>Author:</strong> Alex Mares</p>
+            <p><strong>Author:</strong> Alex Mares
+            <a href="https://www.linkedin.com/in/alxmrs/" target="_blank" title="LinkedIn">🔗</a>
             <p><strong>Collaborating Researchers:</strong></p>
-            <p>Gerardo Díaz Arango</p>
-            <p>Jorge Eduardo Pérez-Jácome Friscione</p>
-            <p>Héctor Vázquez Leal</p>
+            <p>Gerardo Díaz Arango
+            <a href="https://www.researchgate.net/profile/Gerardo-Diaz-Arango" target="_blank" title="ResearchGate">🔗</a>
+            </p>
+            <p>Jorge Eduardo Pérez-Jácome Friscione
+            <a href="jperezjacome@uv.mx" title="Email">📧</a>
+            </p>
+            <p>Héctor Vázquez Leal
+                <a href="https://www.researchgate.net/profile/Hector-Vazquez-Leal" target="_blank" title="ResearchGate">🔗</a>
+            </p>
         </div>
 
         <div class="footer-right">
-            <img src="assets/secihti.png" alt="SECIHTI Logo" style="height: 40px;">
+            <img src="assets\secihti.png" alt="SECIHTI Logo" style="height: 30px;">
         </div>
     </footer>
 
