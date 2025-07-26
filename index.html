@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 <head>
   <meta charset="UTF-8">
-  <title>Spanish Empathic HCI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spanish SER Research</title>
   <style>
     * {
         box-sizing: border-box;
@@ -13,8 +13,6 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
       background-color: #ffffff;
       color: #333;
       display: flex;
@@ -22,7 +20,7 @@
     }
 
     .page-content {
-        padding: 40px 5%;
+        padding: 40px 1%;
         max-width: 1200px;
         margin: 0 auto;
         flex: 1;
@@ -42,7 +40,7 @@
       color: #666;
       margin-bottom: 20px;
       text-align: center;
-      max-width: 80%;
+      max-width: 90%;
     }
 
     .section {
@@ -96,60 +94,35 @@
       margin-top: 30px;
     }
 
-    /* Estilos para PNG sin sombra */
     .side-by-side-gallery img,
     .image-text-row img {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-    border-radius: 0;
-    box-shadow: none; /* sin sombra */
-    object-fit: contain;
-    image-rendering: auto;
-    }
-
-    /* Layout móvil: una sola columna */
-    @media screen and (max-width: 768px) {
-    .side-by-side-gallery {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .side-by-side-gallery img {
-        max-width: 90vw;
-    }
+      width: 100%;
+      height: auto;
+      max-width: 400px;
+      border-radius: 0;
+      box-shadow: none;
+      object-fit: contain;
+      image-rendering: auto;
     }
 
     .flow-sequence {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .flow-sequence figure {
-    margin: 0;
-    text-align: center;
+      margin: 0;
+      text-align: center;
     }
 
     .flow-arrow {
-    font-size: 3em;
-    color: #888;
-    margin: 0 0px;
+      font-size: 3em;
+      color: #888;
+      margin: 0 0px;
     }
-
-    @media screen and (max-width: 768px) {
-    .flow-sequence {
-        flex-direction: column;
-    }
-
-    .flow-arrow {
-        transform: rotate(90deg); /* Flecha hacia abajo en móvil */
-        margin: 10px 0;
-    }
-    }
-
 
     .paper-link, .gradio-link, .code-link {
       display: inline-block;
@@ -176,7 +149,17 @@
       color: white;
       font-size: 1.1em;
       border: none;
-      margin: 20px auto;
+      margin: 10px auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 500px) {
+      .gradio-link {
+        font-size: 0.95em;
+      }
     }
 
     .gradio-link:hover {
@@ -187,119 +170,152 @@
       background-color: #f9f9f9;
       border: 1px solid #ccc;
       color: #333;
-      margin: 20px auto;
+      margin: 5px auto;
     }
 
     .code-link:hover {
       background-color: #e6e6e6;
     }
 
-    figure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    }
-
-    figcaption {
-    font-size: 0.85em;
-    font-style: italic;
-    color: #666;
-    margin-top: 6px;
-    text-align: center;
-    max-width: 90%;
-    }
-
-    .image-text-row figure,
-    .side-by-side-gallery figure {
-    flex: 1;
-    }
-
-    .soft-divider {
-    width: 60%;
-    max-width: 800px;
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 0px auto 30px auto;
-    }
-
-    .back-button {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    color: #333;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 0.95em;
-    margin: 5px auto;
-    transition: background-color 0.2s ease;
-    }
-
-    .back-button:hover {
-    background-color: #e6e6e6;
-    }
-
-    footer {
-        background-color: #ffffff;
-        border-top: 1px solid #ddd;
-        color: #555;
-        font-size: 0.95em;
-        padding: 30px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .footer-left,
-    .footer-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-shrink: 0;
-    }
-
-    .footer-left img,
-    .footer-right img {
-        height: auto;
-        max-height: 80px;
-        width: auto;
-    }
-
-    .footer-center {
-        text-align: center;
-        margin: 0 auto;
-        min-width: 200px;
-        }
-
-
     .button-row {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin: 0px 0;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 10px 50px;
     }
 
     .gradio-link,
     .code-link {
-        margin: 0; /* elimina márgenes verticales individuales */
+      margin: 0;
     }
 
-    .contact-icon {
-    width: 18px;
-    height: 18px;
-    margin-left: 6px;
-    vertical-align: middle;
-    opacity: 0.8;
-    transition: opacity 0.2s;
+    figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
     }
 
-    .contact-icon:hover {
-    opacity: 1;
+    figcaption {
+      font-size: 0.85em;
+      font-style: italic;
+      color: #666;
+      margin-top: 6px;
+      text-align: center;
+      max-width: 90%;
     }
 
+    .image-text-row figure,
+    .side-by-side-gallery figure {
+      flex: 1;
+    }
+
+    .soft-divider {
+      width: 60%;
+      max-width: 800px;
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 0px auto 30px auto;
+    }
+
+    .back-button {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      color: #333;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.95em;
+      margin: 5px auto 30px auto;
+      transition: background-color 0.2s ease;
+    }
+
+    .back-button:hover {
+      background-color: #e6e6e6;
+    }
+
+    footer {
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
+      color: #555;
+      font-size: 0.95em;
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-left,
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .footer-left img,
+    .footer-right img {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+    }
+
+    .footer-center {
+      text-align: center;
+      margin: 0 auto;
+      min-width: 200px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 0px 0;
+    }
+
+    .gradio-link,
+    .code-link {
+      margin: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .page-content {
+        width: 90%;
+      }
+
+      .subtitle {
+        max-width: 100%;
+      }
+
+      .image-text-row {
+        flex-direction: column-reverse;
+      }
+
+      .abstract-column,
+      .image-text-row figure {
+        max-width: 100%;
+      }
+
+      .side-by-side-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 10px 0;
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      .gradio-link {
+        font-size: 0.95em;
+      }
+    }
   </style>
 </head>
 <body>
