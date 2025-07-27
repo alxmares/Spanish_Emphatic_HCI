@@ -29,19 +29,12 @@
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 1.5em;
       margin-bottom: 10px;
       color: #0073e6;
       text-align: center;
     }
 
-    .subtitle {
-      font-size: 1.2em;
-      color: #666;
-      margin-bottom: 20px;
-      text-align: center;
-      max-width: 90%;
-    }
 
     .section {
       width: 100%;
@@ -50,7 +43,7 @@
     }
 
     .section h2 {
-      font-size: 1.4em;
+      font-size: 1.1em;
       margin-bottom: 10px;
       color: #222;
     }
@@ -64,15 +57,15 @@
     .image-text-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 40px;
-      margin-top: 10px;
+      gap: 0px;
+      margin-top: 30px;
       align-items: stretch;
       justify-content: center;
     }
 
     .image-text-row img {
       width: 100%;
-      max-height: 100%;
+      max-height: auto;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       object-fit: cover;
@@ -89,7 +82,7 @@
     .side-by-side-gallery {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 10px;
       justify-content: center;
       margin-top: 30px;
     }
@@ -98,7 +91,7 @@
     .image-text-row img {
       width: 100%;
       height: auto;
-      max-width: 400px;
+      max-width: 100%;
       border-radius: 0;
       box-shadow: none;
       object-fit: contain;
@@ -187,14 +180,14 @@
 
     .gradio-link,
     .code-link {
-      margin: 0;
+      margin: 10;
     }
 
     figure {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0;
+      margin: 15px;
     }
 
     figcaption {
@@ -216,7 +209,7 @@
       max-width: 800px;
       border: none;
       border-top: 1px solid #ddd;
-      margin: 0px auto 30px auto;
+      margin: 0px auto 10px auto;
     }
 
     .back-button {
@@ -228,45 +221,12 @@
       padding: 8px 16px;
       border-radius: 6px;
       font-size: 0.95em;
-      margin: 5px auto 30px auto;
+      margin: 20px auto;
       transition: background-color 0.2s ease;
     }
 
     .back-button:hover {
       background-color: #e6e6e6;
-    }
-
-    footer {
-      background-color: #ffffff;
-      border-top: 1px solid #ddd;
-      color: #555;
-      font-size: 0.95em;
-      padding: 30px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .footer-left,
-    .footer-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .footer-left img,
-    .footer-right img {
-      height: auto;
-      max-height: 80px;
-      width: auto;
-    }
-
-    .footer-center {
-      text-align: center;
-      margin: 0 auto;
-      min-width: 200px;
     }
 
     .button-row {
@@ -280,6 +240,72 @@
     .gradio-link,
     .code-link {
       margin: 0;
+    }
+
+    footer {
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
+      color: #555;
+      font-size: 0.8em;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logos-left,
+    .footer-logos-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .footer-logos-left img,
+    .footer-logos-right img {
+      height: auto;
+      max-height: 90px;
+      width: auto;
+    }
+
+    .footer-authors {
+      flex: 2;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .footer-authors p {
+      margin: 4px 0;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-authors {
+        order: -1;
+        width: 100%;
+      }
+
+      .footer-logos-left,
+      .footer-logos-right {
+        justify-content: center;
+        margin-top: 10px;
+      }
+    }
+    .author-tagline {
+      text-align: center;
+      font-size: 0.9em;
+      color: #999;
+      margin-top: 0px;
+      margin-bottom: 20px;
     }
 
     @media screen and (max-width: 768px) {
@@ -322,15 +348,16 @@
     <div class="page-content">
         <h1>Spanish End-to-End Empathic HCI</h1>
         <hr class="soft-divider">        
+        <p class="author-tagline">By: Alex Mares</p>
 
         <div class="section">
             <div class="image-text-row">
                 <figure>
-                    <img src="assets\diagram.png" alt="Summary of best results and SOTA comparison", style="height: 200px;">
+                    <img src="assets\diagram.png" alt="Summary of best results and SOTA comparison",>
                     <figcaption>The architecture follows an ASR → SER → Retrieval → Reasoning LLM → TTS pipeline.</figcaption>
                 </figure>
                 <div class="abstract-column">
-                    <p>This study presents the first fully integrated empathic HCI pipeline in Spanish, combining ASR, multitask SER, protocol-driven reasoning via LLMs, and emotionally expressive TTS. Unlike previous systems constrained to isolated modules or non-Spanish languages, this framework enables proactive, affect-aware interaction across the full conversational cycle. Its modular and scalable design allows easy extension to other domains or tasks, facilitating continued development of emotionally intelligent systems. </p>
+                    <p>This study presents the first fully integrated empathic HCI pipeline in Spanish, combining ASR, multitask SER, protocol-driven reasoning via LLMs, and emotionally expressive TTS.</p>
                     <a class="paper-link" href="https://www.mdpi.com/2076-3417/15/8/4340" target="_blank">Read the full paper on MDPI</a>
                 </div>
             </div>
@@ -348,7 +375,7 @@
                 </figure>
                 <div class="flow-arrow">→</div>
                 <figure>
-                <img src="assets/3_ser.png" alt="Emotion detection", style="height: 60px;">
+                <img src="assets/3_ser.png" alt="Emotion detection", style="height: 90px;">
                 <figcaption>Emotion recognition (Multitask SER)</figcaption>
                 </figure>
                 <div class="flow-arrow">→</div>
@@ -382,30 +409,32 @@
     
     
     <footer>
-        <div class="footer-left">
-            <img src="assets\uv.jpg" alt="UV Logo" style="height: 80px;">
-            <img src="assets\inaoe.png" alt="INAOE Logo"  style="height: 80px;">
-            <img src="assets\fie.png" alt="FIE Logo" style="height: 80px;">
-        </div>
+      <div class="footer-logos-left">
+        <img src="assets/uv.jpg" alt="UV Logo">
+        <img src="assets/inaoe.png" alt="INAOE Logo">
+        <img src="assets/fie.png" alt="FIE Logo">
+      </div>
 
-        <div class="footer-center">
-            <p><strong>Author:</strong> Alex Mares
-            <a href="https://www.linkedin.com/in/alxmrs/" target="_blank" title="LinkedIn">🔗</a>
-            <p><strong>Collaborating Researchers:</strong></p>
-            <p>Gerardo Díaz Arango
-            <a href="https://www.researchgate.net/profile/Gerardo-Diaz-Arango" target="_blank" title="ResearchGate">🔗</a>
-            </p>
-            <p>Jorge Eduardo Pérez-Jácome Friscione
-            <a href="mailto:jperezjacome@uv.mx" title="Email">📧</a>
-            </p>
-            <p>Héctor Vázquez Leal
-                <a href="https://www.researchgate.net/profile/Hector-Vazquez-Leal" target="_blank" title="ResearchGate">🔗</a>
-            </p>
-        </div>
+      <div class="footer-authors">
+        <p><strong>Author:</strong> Alex Mares
+          <a href="https://www.linkedin.com/in/alxmrs/" target="_blank" title="LinkedIn">🔗</a>
+        </p>
+        <p><strong>Collaborating Researchers:</strong></p>
+        <p>Gerardo Díaz Arango
+          <a href="https://www.researchgate.net/profile/Gerardo-Diaz-Arango" target="_blank" title="ResearchGate">🔗</a>
+        </p>
+        <p>Jorge Eduardo Pérez-Jácome Friscione
+          <a href="mailto:jperezjacome@uv.mx" title="Email">📧</a>
+        </p>
+        <p>Héctor Vázquez Leal
+          <a href="https://www.researchgate.net/profile/Hector-Vazquez-Leal" target="_blank" title="ResearchGate">🔗</a>
+        </p>
+      </div>
 
-        <div class="footer-right">
-            <img src="assets\secihti.png" alt="SECIHTI Logo" style="height: 30px;">
-        </div>
+      <div class="footer-logos-right">
+        
+        <img src="assets/secihti.png" alt="SECIHTI Logo" style="max-height: 40px;">
+      </div>
     </footer>
 
 </body>
